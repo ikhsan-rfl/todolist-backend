@@ -1,0 +1,464 @@
+name: 'Tasks Management'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/tasks
+    metadata:
+      groupName: 'Tasks Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List All Tasks'
+      description: 'Display a listing of the tasks.'
+      authenticated: false
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      category_id:
+        name: category_id
+        description: 'The ID of the category to filter tasks.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      due_date:
+        name: due_date
+        description: 'The due date to filter tasks (format: YYYY-MM-DD).'
+        required: false
+        example: '2025-09-10'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      due_date_days:
+        name: due_date_days
+        description: 'The number of days from today to filter tasks due within that range.'
+        required: false
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      priority:
+        name: priority
+        description: 'The priority level to filter tasks.'
+        required: false
+        example: High
+        type: string
+        enumValues:
+          - High
+          - Medium
+          - Low
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      completed:
+        name: completed
+        description: 'Filter tasks by their completion status.'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      offset:
+        name: offset
+        description: 'The number of tasks to skip for pagination.'
+        required: false
+        example: 0
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      limit:
+        name: limit
+        description: 'The maximum number of tasks to return.'
+        required: false
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      category_id: 1
+      due_date: '2025-09-10'
+      due_date_days: 7
+      priority: High
+      completed: false
+      offset: 0
+      limit: 10
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"code":20000,"message":"Tasks retrieved successfully","data":[{"id":1,"content":"Ngopi Ngopi","details":"Di Rumah Nopal","priority":"1","due_date":"2025-09-08","category_id":2,"completed":0,"created_at":"2025-09-08T06:42:18.000000Z","updated_at":"2025-09-08T06:42:18.000000Z"}]}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"success":false,"code":42201,"message":"The given data was invalid.","errors":{"category_id":["The category id field must be an integer."]}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: api/tasks
+    metadata:
+      groupName: 'Tasks Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Add New Task'
+      description: 'Add a new task to the database.'
+      authenticated: false
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      content:
+        name: content
+        description: 'The content of the task.'
+        required: true
+        example: 'Beli Koin Micin'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      details:
+        name: details
+        description: 'The details of the task.'
+        required: false
+        example: 'Langsung All In AKOWAKWOAW'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      priority:
+        name: priority
+        description: 'The priority level of the task.'
+        required: true
+        example: High
+        type: string
+        enumValues:
+          - High
+          - Medium
+          - Low
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      due_date:
+        name: due_date
+        description: 'The due date of the task (format: YYYY-MM-DD).'
+        required: false
+        example: '2025-09-10'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      category_id:
+        name: category_id
+        description: 'The ID of the category the task belongs to.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      content: 'Beli Koin Micin'
+      details: 'Langsung All In AKOWAKWOAW'
+      priority: High
+      due_date: '2025-09-10'
+      category_id: 1
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"code":20000,"message":"Task created successfully"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"success":false,"code":42201,"message":"The given data was invalid.","errors":{"content":["The content field must be a string."],"category_id":["The selected category id is invalid."]}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/tasks/{id}'
+    metadata:
+      groupName: 'Tasks Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update Task Data'
+      description: 'Update a task by its ID.'
+      authenticated: false
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      content:
+        name: content
+        description: 'The content of the task.'
+        required: false
+        example: 'Nambang Nikel'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      details:
+        name: details
+        description: 'The details of the task.'
+        required: false
+        example: 'Di Raja Ampat'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      priority:
+        name: priority
+        description: 'The priority level of the task.'
+        required: false
+        example: Medium
+        type: string
+        enumValues:
+          - High
+          - Medium
+          - Low
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      due_date:
+        name: due_date
+        description: 'The due date of the task (format: YYYY-MM-DD).'
+        required: false
+        example: '2025-09-15'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      category_id:
+        name: category_id
+        description: 'The ID of the category the task belongs to.'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      completed:
+        name: completed
+        description: 'The completion status of the task.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      content: 'Nambang Nikel'
+      details: 'Di Raja Ampat'
+      priority: Medium
+      due_date: '2025-09-15'
+      category_id: 2
+      completed: true
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"code":20000,"message":"Task updated successfully"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"success":false,"code":40401,"message":"Task not found"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"success":false,"code":42201,"message":"The given data was invalid.","errors":{"content":["The content field must be a string."],"category_id":["The selected category id is invalid."]}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/tasks/{id}/complete'
+    metadata:
+      groupName: 'Tasks Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mark Task as Completed'
+      description: 'Mark a task as completed by its ID.'
+      authenticated: false
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"code":20000,"message":"Task marked as completed successfully"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"success":false,"code":40401,"message":"Task not found"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/tasks/{id}'
+    metadata:
+      groupName: 'Tasks Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete Task'
+      description: 'Delete a task by its ID.'
+      authenticated: false
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"code":20000,"message":"Task deleted successfully"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"success":false,"code":40401,"message":"Task not found"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -1,0 +1,745 @@
+openapi: 3.0.3
+info:
+  title: 'Todo List API Documentation'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://todolist-backend.test'
+tags:
+  -
+    name: 'Category Management'
+    description: ''
+  -
+    name: 'Tasks Management'
+    description: ''
+paths:
+  /api/categories:
+    get:
+      summary: 'List All Categories'
+      operationId: listAllCategories
+      description: 'Show a list of all categories with the count of tasks in each category.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  code: 20000
+                  message: 'Categories retrieved successfully'
+                  data:
+                    -
+                      id: 1
+                      name: Pekerjaan
+                      created_at: '2025-09-08T06:42:18.000000Z'
+                      updated_at: '2025-09-08T06:42:18.000000Z'
+                      tasks_count: 2
+                    -
+                      id: 2
+                      name: Pribadi
+                      created_at: '2025-09-08T06:42:18.000000Z'
+                      updated_at: '2025-09-08T06:42:18.000000Z'
+                      tasks_count: 3
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 20000
+                  message:
+                    type: string
+                    example: 'Categories retrieved successfully'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: Pekerjaan
+                        created_at: '2025-09-08T06:42:18.000000Z'
+                        updated_at: '2025-09-08T06:42:18.000000Z'
+                        tasks_count: 2
+                      -
+                        id: 2
+                        name: Pribadi
+                        created_at: '2025-09-08T06:42:18.000000Z'
+                        updated_at: '2025-09-08T06:42:18.000000Z'
+                        tasks_count: 3
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Pekerjaan
+                        created_at:
+                          type: string
+                          example: '2025-09-08T06:42:18.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2025-09-08T06:42:18.000000Z'
+                        tasks_count:
+                          type: integer
+                          example: 2
+      tags:
+        - 'Category Management'
+      security: []
+    put:
+      summary: 'Add New Category'
+      operationId: addNewCategory
+      description: 'Add a new category to the database.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  code: 20000
+                  message: 'Category created successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 20000
+                  message:
+                    type: string
+                    example: 'Category created successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  code: 42201
+                  message: 'The given data was invalid.'
+                  errors:
+                    name:
+                      - 'The name field is required.'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: 42201
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        example:
+                          - 'The name field is required.'
+                        items:
+                          type: string
+      tags:
+        - 'Category Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the category.'
+                  example: Work
+                  nullable: false
+              required:
+                - name
+      security: []
+  '/api/categories/{id}':
+    delete:
+      summary: 'Delete Category'
+      operationId: deleteCategory
+      description: 'Delete a category by its ID.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  code: 20000
+                  message: 'Category deleted successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 20000
+                  message:
+                    type: string
+                    example: 'Category deleted successfully'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  code: 40401
+                  message: 'Category not found'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: 40401
+                  message:
+                    type: string
+                    example: 'Category not found'
+      tags:
+        - 'Category Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/tasks:
+    post:
+      summary: 'List All Tasks'
+      operationId: listAllTasks
+      description: 'Display a listing of the tasks.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  code: 20000
+                  message: 'Tasks retrieved successfully'
+                  data:
+                    -
+                      id: 1
+                      content: 'Ngopi Ngopi'
+                      details: 'Di Rumah Nopal'
+                      priority: '1'
+                      due_date: '2025-09-08'
+                      category_id: 2
+                      completed: 0
+                      created_at: '2025-09-08T06:42:18.000000Z'
+                      updated_at: '2025-09-08T06:42:18.000000Z'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 20000
+                  message:
+                    type: string
+                    example: 'Tasks retrieved successfully'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        content: 'Ngopi Ngopi'
+                        details: 'Di Rumah Nopal'
+                        priority: '1'
+                        due_date: '2025-09-08'
+                        category_id: 2
+                        completed: 0
+                        created_at: '2025-09-08T06:42:18.000000Z'
+                        updated_at: '2025-09-08T06:42:18.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        content:
+                          type: string
+                          example: 'Ngopi Ngopi'
+                        details:
+                          type: string
+                          example: 'Di Rumah Nopal'
+                        priority:
+                          type: string
+                          example: '1'
+                        due_date:
+                          type: string
+                          example: '2025-09-08'
+                        category_id:
+                          type: integer
+                          example: 2
+                        completed:
+                          type: integer
+                          example: 0
+                        created_at:
+                          type: string
+                          example: '2025-09-08T06:42:18.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2025-09-08T06:42:18.000000Z'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  code: 42201
+                  message: 'The given data was invalid.'
+                  errors:
+                    category_id:
+                      - 'The category id field must be an integer.'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: 42201
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      category_id:
+                        type: array
+                        example:
+                          - 'The category id field must be an integer.'
+                        items:
+                          type: string
+      tags:
+        - 'Tasks Management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: integer
+                  description: 'The ID of the category to filter tasks.'
+                  example: 1
+                  nullable: false
+                due_date:
+                  type: date
+                  description: 'The due date to filter tasks (format: YYYY-MM-DD).'
+                  example: '2025-09-10'
+                  nullable: false
+                due_date_days:
+                  type: integer
+                  description: 'The number of days from today to filter tasks due within that range.'
+                  example: 7
+                  nullable: false
+                priority:
+                  type: string
+                  description: 'The priority level to filter tasks.'
+                  example: High
+                  nullable: false
+                  enum:
+                    - High
+                    - Medium
+                    - Low
+                completed:
+                  type: boolean
+                  description: 'Filter tasks by their completion status.'
+                  example: false
+                  nullable: false
+                offset:
+                  type: integer
+                  description: 'The number of tasks to skip for pagination.'
+                  example: 0
+                  nullable: false
+                limit:
+                  type: integer
+                  description: 'The maximum number of tasks to return.'
+                  example: 10
+                  nullable: false
+      security: []
+    put:
+      summary: 'Add New Task'
+      operationId: addNewTask
+      description: 'Add a new task to the database.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  code: 20000
+                  message: 'Task created successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 20000
+                  message:
+                    type: string
+                    example: 'Task created successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  code: 42201
+                  message: 'The given data was invalid.'
+                  errors:
+                    content:
+                      - 'The content field must be a string.'
+                    category_id:
+                      - 'The selected category id is invalid.'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: 42201
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      content:
+                        type: array
+                        example:
+                          - 'The content field must be a string.'
+                        items:
+                          type: string
+                      category_id:
+                        type: array
+                        example:
+                          - 'The selected category id is invalid.'
+                        items:
+                          type: string
+      tags:
+        - 'Tasks Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  description: 'The content of the task.'
+                  example: 'Beli Koin Micin'
+                  nullable: false
+                details:
+                  type: string
+                  description: 'The details of the task.'
+                  example: 'Langsung All In AKOWAKWOAW'
+                  nullable: true
+                priority:
+                  type: string
+                  description: 'The priority level of the task.'
+                  example: High
+                  nullable: false
+                  enum:
+                    - High
+                    - Medium
+                    - Low
+                due_date:
+                  type: date
+                  description: 'The due date of the task (format: YYYY-MM-DD).'
+                  example: '2025-09-10'
+                  nullable: true
+                category_id:
+                  type: integer
+                  description: 'The ID of the category the task belongs to.'
+                  example: 1
+                  nullable: false
+              required:
+                - content
+                - priority
+                - category_id
+      security: []
+  '/api/tasks/{id}':
+    post:
+      summary: 'Update Task Data'
+      operationId: updateTaskData
+      description: 'Update a task by its ID.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  code: 20000
+                  message: 'Task updated successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 20000
+                  message:
+                    type: string
+                    example: 'Task updated successfully'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  code: 40401
+                  message: 'Task not found'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: 40401
+                  message:
+                    type: string
+                    example: 'Task not found'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  code: 42201
+                  message: 'The given data was invalid.'
+                  errors:
+                    content:
+                      - 'The content field must be a string.'
+                    category_id:
+                      - 'The selected category id is invalid.'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: 42201
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      content:
+                        type: array
+                        example:
+                          - 'The content field must be a string.'
+                        items:
+                          type: string
+                      category_id:
+                        type: array
+                        example:
+                          - 'The selected category id is invalid.'
+                        items:
+                          type: string
+      tags:
+        - 'Tasks Management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  description: 'The content of the task.'
+                  example: 'Nambang Nikel'
+                  nullable: false
+                details:
+                  type: string
+                  description: 'The details of the task.'
+                  example: 'Di Raja Ampat'
+                  nullable: false
+                priority:
+                  type: string
+                  description: 'The priority level of the task.'
+                  example: Medium
+                  nullable: false
+                  enum:
+                    - High
+                    - Medium
+                    - Low
+                due_date:
+                  type: date
+                  description: 'The due date of the task (format: YYYY-MM-DD).'
+                  example: '2025-09-15'
+                  nullable: false
+                category_id:
+                  type: integer
+                  description: 'The ID of the category the task belongs to.'
+                  example: 2
+                  nullable: false
+                completed:
+                  type: boolean
+                  description: 'The completion status of the task.'
+                  example: true
+                  nullable: false
+      security: []
+    delete:
+      summary: 'Delete Task'
+      operationId: deleteTask
+      description: 'Delete a task by its ID.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  code: 20000
+                  message: 'Task deleted successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 20000
+                  message:
+                    type: string
+                    example: 'Task deleted successfully'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  code: 40401
+                  message: 'Task not found'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: 40401
+                  message:
+                    type: string
+                    example: 'Task not found'
+      tags:
+        - 'Tasks Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the task.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/tasks/{id}/complete':
+    patch:
+      summary: 'Mark Task as Completed'
+      operationId: markTaskAsCompleted
+      description: 'Mark a task as completed by its ID.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  code: 20000
+                  message: 'Task marked as completed successfully'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 20000
+                  message:
+                    type: string
+                    example: 'Task marked as completed successfully'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  code: 40401
+                  message: 'Task not found'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: 40401
+                  message:
+                    type: string
+                    example: 'Task not found'
+      tags:
+        - 'Tasks Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the task.'
+        example: 1
+        required: true
+        schema:
+          type: integer

@@ -1,0 +1,406 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/todolist-backend.test"
+        }
+    ],
+    "info": {
+        "name": "Todo List API Documentation",
+        "_postman_id": "8e0c7bfc-9a67-4d90-8875-174c2c06fe6c",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Category Management",
+            "description": "",
+            "item": [
+                {
+                    "name": "List All Categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Show a list of all categories with the count of tasks in each category.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"success\":true,\"code\":20000,\"message\":\"Categories retrieved successfully\",\"data\":[{\"id\":1,\"name\":\"Pekerjaan\",\"created_at\":\"2025-09-08T06:42:18.000000Z\",\"updated_at\":\"2025-09-08T06:42:18.000000Z\",\"tasks_count\":2},{\"id\":2,\"name\":\"Pribadi\",\"created_at\":\"2025-09-08T06:42:18.000000Z\",\"updated_at\":\"2025-09-08T06:42:18.000000Z\",\"tasks_count\":3}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Add New Category",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/categories"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Work\"}"
+                        },
+                        "description": "Add a new category to the database.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"success\":true,\"code\":20000,\"message\":\"Category created successfully\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"success\":false,\"code\":42201,\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete Category",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/categories\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the category."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Delete a category by its ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"success\":true,\"code\":20000,\"message\":\"Category deleted successfully\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"success\":false,\"code\":40401,\"message\":\"Category not found\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Tasks Management",
+            "description": "",
+            "item": [
+                {
+                    "name": "List All Tasks",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/tasks",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/tasks"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"category_id\":1,\"due_date\":\"2025-09-10\",\"due_date_days\":7,\"priority\":\"High\",\"completed\":false,\"offset\":0,\"limit\":10}"
+                        },
+                        "description": "Display a listing of the tasks.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"success\":true,\"code\":20000,\"message\":\"Tasks retrieved successfully\",\"data\":[{\"id\":1,\"content\":\"Ngopi Ngopi\",\"details\":\"Di Rumah Nopal\",\"priority\":\"1\",\"due_date\":\"2025-09-08\",\"category_id\":2,\"completed\":0,\"created_at\":\"2025-09-08T06:42:18.000000Z\",\"updated_at\":\"2025-09-08T06:42:18.000000Z\"}]}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"success\":false,\"code\":42201,\"message\":\"The given data was invalid.\",\"errors\":{\"category_id\":[\"The category id field must be an integer.\"]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Add New Task",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/tasks",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/tasks"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"content\":\"Beli Koin Micin\",\"details\":\"Langsung All In AKOWAKWOAW\",\"priority\":\"High\",\"due_date\":\"2025-09-10\",\"category_id\":1}"
+                        },
+                        "description": "Add a new task to the database.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"success\":true,\"code\":20000,\"message\":\"Task created successfully\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"success\":false,\"code\":42201,\"message\":\"The given data was invalid.\",\"errors\":{\"content\":[\"The content field must be a string.\"],\"category_id\":[\"The selected category id is invalid.\"]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update Task Data",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/tasks\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/tasks\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the task."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"content\":\"Nambang Nikel\",\"details\":\"Di Raja Ampat\",\"priority\":\"Medium\",\"due_date\":\"2025-09-15\",\"category_id\":2,\"completed\":true}"
+                        },
+                        "description": "Update a task by its ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"success\":true,\"code\":20000,\"message\":\"Task updated successfully\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"success\":false,\"code\":40401,\"message\":\"Task not found\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"success\":false,\"code\":42201,\"message\":\"The given data was invalid.\",\"errors\":{\"content\":[\"The content field must be a string.\"],\"category_id\":[\"The selected category id is invalid.\"]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mark Task as Completed",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/tasks\/:id\/complete",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/tasks\/:id\/complete",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the task."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Mark a task as completed by its ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"success\":true,\"code\":20000,\"message\":\"Task marked as completed successfully\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"success\":false,\"code\":40401,\"message\":\"Task not found\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete Task",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/tasks\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/tasks\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the task."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Delete a task by its ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"success\":true,\"code\":20000,\"message\":\"Task deleted successfully\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"success\":false,\"code\":40401,\"message\":\"Task not found\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

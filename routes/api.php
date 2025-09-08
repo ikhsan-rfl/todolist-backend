@@ -1,0 +1,16 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TasksController;
+use App\Http\Controllers\CategoryController;
+
+Route::get('/categories', [CategoryController::class, 'index']);
+Route::put('/categories', [CategoryController::class, 'store']);
+Route::delete('/categories/{id}', [CategoryController::class, 'delete']);
+
+Route::post('/tasks', [TasksController::class, 'index']);
+Route::put('/tasks', [TasksController::class, 'store']);
+Route::post('/tasks/{id}', [TasksController::class, 'update']);
+Route::patch('/tasks/{id}/complete', [TasksController::class, 'markAsCompleted']);
+Route::delete('/tasks/{id}', [TasksController::class, 'delete']);
