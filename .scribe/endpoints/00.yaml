@@ -76,7 +76,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"success":true,"code":20000,"message":"Category created successfully"}'
+        content: '{"success":true,"code":20100,"message":"Category created successfully","data":{"name":"Work","updated_at":"2025-09-09T09:50:31.000000Z","created_at":"2025-09-09T09:50:31.000000Z","id":8}}'
         headers: []
         description: ''
         custom: []

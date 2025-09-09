@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Todo List API Documentation",
-        "_postman_id": "c5f84d8d-0072-4c7f-992e-c13adbbe7bdf",
+        "_postman_id": "0ada6382-e6cd-4ec9-83ef-37364b7305d6",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -87,7 +87,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"success\":true,\"code\":20000,\"message\":\"Category created successfully\"}",
+                            "body": "{\"success\":true,\"code\":20100,\"message\":\"Category created successfully\",\"data\":{\"name\":\"Work\",\"updated_at\":\"2025-09-09T09:50:31.000000Z\",\"created_at\":\"2025-09-09T09:50:31.000000Z\",\"id\":8}}",
                             "name": ""
                         },
                         {
@@ -218,7 +218,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"category_id\":16,\"due_date\":\"2025-09-09T07:39:12\",\"due_date_days\":39,\"priority\":\"Medium\",\"offset\":84,\"limit\":16}"
+                            "raw": "{\"category_id\":16,\"due_date\":\"2025-09-09T09:51:42\",\"due_date_days\":39,\"priority\":\"High\",\"offset\":84,\"limit\":16}"
                         },
                         "description": "Display a listing of the tasks.",
                         "auth": {

@@ -117,7 +117,7 @@ endpoints:
         name: due_date
         description: 'Must be a valid date.'
         required: false
-        example: '2025-09-09T07:39:12'
+        example: '2025-09-09T09:51:42'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -137,7 +137,7 @@ endpoints:
         name: priority
         description: ''
         required: false
-        example: Medium
+        example: High
         type: string
         enumValues:
           - High
@@ -168,9 +168,9 @@ endpoints:
         custom: []
     cleanBodyParameters:
       category_id: 16
-      due_date: '2025-09-09T07:39:12'
+      due_date: '2025-09-09T09:51:42'
       due_date_days: 39
-      priority: Medium
+      priority: High
       offset: 84
       limit: 16
     fileParameters: []

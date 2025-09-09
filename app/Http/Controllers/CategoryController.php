@@ -37,7 +37,7 @@ class CategoryController extends Controller
      *
      * @bodyParam name string required The name of the category. Example: Work
      *
-     * @response 200 {"success":true,"code":20000,"message":"Category created successfully"}
+     * @response 200 {"success":true,"code":20100,"message":"Category created successfully","data":{"name":"Work","updated_at":"2025-09-09T09:50:31.000000Z","created_at":"2025-09-09T09:50:31.000000Z","id":8}}
      * @response 422 {"success":false,"code":42201,"message":"The given data was invalid.","errors":{"name":["The name field is required."]}}
      *
      * @param \Illuminate\Http\Request $request
