@@ -456,7 +456,7 @@ paths:
                 due_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2025-09-09T09:51:42'
+                  example: '2025-09-09T13:46:16'
                   nullable: false
                 due_date_days:
                   type: integer
@@ -466,7 +466,7 @@ paths:
                 priority:
                   type: string
                   description: ''
-                  example: High
+                  example: Low
                   nullable: false
                   enum:
                     - High
@@ -594,6 +594,95 @@ paths:
                 - category_id
       security: []
   '/api/tasks/{id}':
+    get:
+      summary: 'Get Task Details'
+      operationId: getTaskDetails
+      description: 'Get the details of a specific task by its ID.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  code: 20000
+                  message: 'Task retrieved successfully'
+                  data:
+                    id: 1
+                    content: 'Ngopi Ngopi'
+                    details: 'Di Rumah Nopal'
+                    priority: High
+                    due_date: '2025-09-09T00:00:00.000000Z'
+                    category_id: 2
+                    completed: false
+                    created_at: '2025-09-09T07:56:02.000000Z'
+                    updated_at: '2025-09-09T07:56:02.000000Z'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 20000
+                  message:
+                    type: string
+                    example: 'Task retrieved successfully'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      content:
+                        type: string
+                        example: 'Ngopi Ngopi'
+                      details:
+                        type: string
+                        example: 'Di Rumah Nopal'
+                      priority:
+                        type: string
+                        example: High
+                      due_date:
+                        type: string
+                        example: '2025-09-09T00:00:00.000000Z'
+                      category_id:
+                        type: integer
+                        example: 2
+                      completed:
+                        type: boolean
+                        example: false
+                      created_at:
+                        type: string
+                        example: '2025-09-09T07:56:02.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2025-09-09T07:56:02.000000Z'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  code: 40401
+                  message: 'Task not found'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: 40401
+                  message:
+                    type: string
+                    example: 'Task not found'
+      tags:
+        - 'Tasks Management'
+      security: []
     put:
       summary: 'Update Task Data'
       operationId: updateTaskData

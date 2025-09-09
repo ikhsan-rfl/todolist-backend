@@ -11,6 +11,7 @@ Route::delete('/categories/{id}', [CategoryController::class, 'delete']);
 
 Route::get('/tasks', [TasksController::class, 'index']);
 Route::post('/tasks/add', [TasksController::class, 'store']);
+Route::get('/tasks/{id}', [TasksController::class, 'show']);
 Route::put('/tasks/{id}', [TasksController::class, 'update']);
 Route::patch('/tasks/{id}/complete', [TasksController::class, 'markAsCompleted']);
 Route::delete('/tasks/{id}', [TasksController::class, 'delete']);

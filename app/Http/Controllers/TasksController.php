@@ -194,6 +194,31 @@ class TasksController extends Controller
     }
 
     /**
+     * Get Task Details
+     *
+     * Get the details of a specific task by its ID.
+     *
+     * @urlParam id integer required The ID of the task. Example: 1
+     *
+     * @response 200 {"success":true,"code":20000,"message":"Task retrieved successfully","data":{"id":1,"content":"Ngopi Ngopi","details":"Di Rumah Nopal","priority":"High","due_date":"2025-09-09T00:00:00.000000Z","category_id":2,"completed":false,"created_at":"2025-09-09T07:56:02.000000Z","updated_at":"2025-09-09T07:56:02.000000Z"}}
+     * @response 404 {"success":false,"code":40401,"message":"Task not found"}
+     *
+     * @param int $id The ID of the task to retrieve.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($id)
+    {
+        $task = Tasks::find($id);
+
+        if (!$task) {
+            return Response::json(key: 'NOT_FOUND', message: 'Task not found');
+        }
+
+        return Response::json(data: new TaskResource($task), message: 'Task retrieved successfully');
+    }
+
+    /**
      * Mark Task as Completed
      *
      * Mark a task as completed by its ID.
