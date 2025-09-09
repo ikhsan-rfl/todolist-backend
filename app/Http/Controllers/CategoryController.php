@@ -53,11 +53,11 @@ class CategoryController extends Controller
             return Response::json(key: 'VALIDATION_ERROR', additional_array: ['errors' => $validation->errors()]);
         }
 
-        Category::create([
+        $category = Category::create([
             'name' => $request->name,
         ]);
 
-        return Response::json(key: 'SUCCESS_CREATED', message: 'Category created successfully');
+        return Response::json(key: 'SUCCESS_CREATED', data: new CategoryResource($category), message: 'Category created successfully');
     }
 
     /**
