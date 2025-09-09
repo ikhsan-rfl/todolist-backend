@@ -9,7 +9,7 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('/categories/add', [CategoryController::class, 'store']);
 Route::delete('/categories/{id}', [CategoryController::class, 'delete']);
 
-Route::post('/tasks', [TasksController::class, 'index']);
+Route::get('/tasks', [TasksController::class, 'index']);
 Route::post('/tasks/add', [TasksController::class, 'store']);
 Route::put('/tasks/{id}', [TasksController::class, 'update']);
 Route::patch('/tasks/{id}/complete', [TasksController::class, 'markAsCompleted']);

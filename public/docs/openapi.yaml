@@ -226,11 +226,92 @@ paths:
         schema:
           type: integer
   /api/tasks:
-    post:
+    get:
       summary: 'List All Tasks'
       operationId: listAllTasks
       description: 'Display a listing of the tasks.'
-      parameters: []
+      parameters:
+        -
+          in: query
+          name: category_id
+          description: 'The ID of the category to filter tasks.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The ID of the category to filter tasks.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: due_date
+          description: 'date The due date to filter tasks (format: YYYY-MM-DD).'
+          example: '2025-09-10'
+          required: false
+          schema:
+            type: string
+            description: 'date The due date to filter tasks (format: YYYY-MM-DD).'
+            example: '2025-09-10'
+            nullable: false
+        -
+          in: query
+          name: due_date_days
+          description: 'The number of days from today to filter tasks due within that range.'
+          example: 7
+          required: false
+          schema:
+            type: integer
+            description: 'The number of days from today to filter tasks due within that range.'
+            example: 7
+            nullable: false
+        -
+          in: query
+          name: priority
+          description: 'The priority level to filter tasks.'
+          example: High
+          required: false
+          schema:
+            type: string
+            description: 'The priority level to filter tasks.'
+            example: High
+            nullable: false
+            enum:
+              - High
+              - Medium
+              - Low
+        -
+          in: query
+          name: completed
+          description: 'Filter tasks by their completion status. If parameter is present, only completed tasks are returned.,'
+          example: '1'
+          required: false
+          schema:
+            type: string
+            description: 'Filter tasks by their completion status. If parameter is present, only completed tasks are returned.,'
+            example: '1'
+            nullable: false
+        -
+          in: query
+          name: offset
+          description: 'The number of tasks to skip for pagination.'
+          example: 0
+          required: false
+          schema:
+            type: integer
+            description: 'The number of tasks to skip for pagination.'
+            example: 0
+            nullable: false
+        -
+          in: query
+          name: limit
+          description: 'The maximum number of tasks to return.'
+          example: 10
+          required: false
+          schema:
+            type: integer
+            description: 'The maximum number of tasks to return.'
+            example: 10
+            nullable: false
       responses:
         200:
           description: ''
@@ -349,42 +430,37 @@ paths:
               properties:
                 category_id:
                   type: integer
-                  description: 'The ID of the category to filter tasks.'
-                  example: 1
+                  description: ''
+                  example: 16
                   nullable: false
                 due_date:
-                  type: date
-                  description: 'The due date to filter tasks (format: YYYY-MM-DD).'
-                  example: '2025-09-10'
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2025-09-09T06:58:51'
                   nullable: false
                 due_date_days:
                   type: integer
-                  description: 'The number of days from today to filter tasks due within that range.'
-                  example: 7
+                  description: 'Must be at least 0.'
+                  example: 39
                   nullable: false
                 priority:
                   type: string
-                  description: 'The priority level to filter tasks.'
-                  example: High
+                  description: ''
+                  example: Medium
                   nullable: false
                   enum:
                     - High
                     - Medium
                     - Low
-                completed:
-                  type: boolean
-                  description: 'Filter tasks by their completion status.'
-                  example: false
-                  nullable: false
                 offset:
                   type: integer
-                  description: 'The number of tasks to skip for pagination.'
-                  example: 0
+                  description: 'Must be at least 0.'
+                  example: 84
                   nullable: false
                 limit:
                   type: integer
-                  description: 'The maximum number of tasks to return.'
-                  example: 10
+                  description: 'Must be at least 1. Must not be greater than 100.'
+                  example: 16
                   nullable: false
       security: []
   /api/tasks/add:

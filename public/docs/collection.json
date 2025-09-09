@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Todo List API Documentation",
-        "_postman_id": "8609a3c7-3907-4eef-955b-a3ff5235cee3",
+        "_postman_id": "68e6c34b-c988-47cc-90fc-bb61f3bca9ef",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -159,10 +159,53 @@
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/tasks",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/tasks"
+                            "query": [
+                                {
+                                    "key": "category_id",
+                                    "value": "1",
+                                    "description": "The ID of the category to filter tasks.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "due_date",
+                                    "value": "2025-09-10",
+                                    "description": "date The due date to filter tasks (format: YYYY-MM-DD).",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "due_date_days",
+                                    "value": "7",
+                                    "description": "The number of days from today to filter tasks due within that range.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "priority",
+                                    "value": "High",
+                                    "description": "The priority level to filter tasks.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "completed",
+                                    "value": "1",
+                                    "description": "Filter tasks by their completion status. If parameter is present, only completed tasks are returned.,",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "",
+                                    "description": "The number of tasks to skip for pagination.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10",
+                                    "description": "The maximum number of tasks to return.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/tasks?category_id=1&due_date=2025-09-10&due_date_days=7&priority=High&completed=1&offset=&limit=10"
                         },
-                        "method": "POST",
+                        "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -175,7 +218,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"category_id\":1,\"due_date\":\"2025-09-10\",\"due_date_days\":7,\"priority\":\"High\",\"completed\":false,\"offset\":0,\"limit\":10}"
+                            "raw": "{\"category_id\":16,\"due_date\":\"2025-09-09T06:58:51\",\"due_date_days\":39,\"priority\":\"Medium\",\"offset\":84,\"limit\":16}"
                         },
                         "description": "Display a listing of the tasks.",
                         "auth": {

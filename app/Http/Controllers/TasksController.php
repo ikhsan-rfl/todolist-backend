@@ -18,13 +18,13 @@ class TasksController extends Controller
      *
      * Display a listing of the tasks.
      *
-     * @bodyParam category_id integer The ID of the category to filter tasks. Example: 1
-     * @bodyParam due_date date The due date to filter tasks (format: YYYY-MM-DD). Example: 2025-09-10
-     * @bodyParam due_date_days integer The number of days from today to filter tasks due within that range. Example: 7
-     * @bodyParam priority string The priority level to filter tasks. Enum: High, Medium, Low. Example: High
-     * @bodyParam completed boolean Filter tasks by their completion status. Example: false
-     * @bodyParam offset integer The number of tasks to skip for pagination. Example: 0
-     * @bodyParam limit integer The maximum number of tasks to return. Example: 10
+     * @queryParam category_id integer The ID of the category to filter tasks. Example: 1
+     * @queryParam due_date date The due date to filter tasks (format: YYYY-MM-DD). Example: 2025-09-10
+     * @queryParam due_date_days integer The number of days from today to filter tasks due within that range. Example: 7
+     * @queryParam priority string The priority level to filter tasks. Enum: High, Medium, Low. Example: High
+     * @queryParam completed string Filter tasks by their completion status. If parameter is present, only completed tasks are returned., Example: 1
+     * @queryParam offset integer The number of tasks to skip for pagination. Example: 0
+     * @queryParam limit integer The maximum number of tasks to return. Example: 10
      *
      * @response 200 {"success":true,"code":20000,"message":"Tasks retrieved successfully","data":[{"id":1,"content":"Ngopi Ngopi","details":"Di Rumah Nopal","priority":"1","due_date":"2025-09-08","category_id":2,"completed":0,"created_at":"2025-09-08T06:42:18.000000Z","updated_at":"2025-09-08T06:42:18.000000Z"}]}
      * @response 422 {"success":false,"code":42201,"message":"The given data was invalid.","errors":{"category_id":["The category id field must be an integer."]}}
@@ -41,7 +41,6 @@ class TasksController extends Controller
             'due_date' => 'sometimes|date',
             'due_date_days' => 'sometimes|integer|min:0',
             'priority' => 'sometimes|in:High,Medium,Low',
-            'completed' => 'sometimes|boolean',
             'offset' => 'sometimes|integer|min:0',
             'limit' => 'sometimes|integer|min:1|max:100',
         ]);
@@ -55,7 +54,7 @@ class TasksController extends Controller
         $dueDate = $request->due_date ?? null;
         $dueDateDays = $request->due_date_days ?? 0;
         $priority = $request->priority ?? null;
-        $completed = $request->completed ?? false;
+        $completed = $request->completed ? true : false;
         $offset = $request->offset ?? 0;
         $limit = $request->limit ?? 3;
 

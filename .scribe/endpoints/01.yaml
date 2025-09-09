@@ -3,7 +3,7 @@ description: ''
 endpoints:
   -
     httpMethods:
-      - POST
+      - GET
     uri: api/tasks
     metadata:
       groupName: 'Tasks Management'
@@ -20,9 +20,7 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
+    queryParameters:
       category_id:
         name: category_id
         description: 'The ID of the category to filter tasks.'
@@ -35,10 +33,10 @@ endpoints:
         custom: []
       due_date:
         name: due_date
-        description: 'The due date to filter tasks (format: YYYY-MM-DD).'
+        description: 'date The due date to filter tasks (format: YYYY-MM-DD).'
         required: false
         example: '2025-09-10'
-        type: date
+        type: string
         enumValues: []
         exampleWasSpecified: true
         nullable: false
@@ -68,10 +66,10 @@ endpoints:
         custom: []
       completed:
         name: completed
-        description: 'Filter tasks by their completion status.'
+        description: 'Filter tasks by their completion status. If parameter is present, only completed tasks are returned.,'
         required: false
-        example: false
-        type: boolean
+        example: '1'
+        type: string
         enumValues: []
         exampleWasSpecified: true
         nullable: false
@@ -96,14 +94,85 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
-    cleanBodyParameters:
+    cleanQueryParameters:
       category_id: 1
       due_date: '2025-09-10'
       due_date_days: 7
       priority: High
-      completed: false
+      completed: '1'
       offset: 0
       limit: 10
+    bodyParameters:
+      category_id:
+        name: category_id
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      due_date:
+        name: due_date
+        description: 'Must be a valid date.'
+        required: false
+        example: '2025-09-09T06:58:51'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      due_date_days:
+        name: due_date_days
+        description: 'Must be at least 0.'
+        required: false
+        example: 39
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      priority:
+        name: priority
+        description: ''
+        required: false
+        example: Medium
+        type: string
+        enumValues:
+          - High
+          - Medium
+          - Low
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      offset:
+        name: offset
+        description: 'Must be at least 0.'
+        required: false
+        example: 84
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      limit:
+        name: limit
+        description: 'Must be at least 1. Must not be greater than 100.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      category_id: 16
+      due_date: '2025-09-09T06:58:51'
+      due_date_days: 39
+      priority: Medium
+      offset: 84
+      limit: 16
     fileParameters: []
     responses:
       -
