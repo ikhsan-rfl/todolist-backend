@@ -37,6 +37,7 @@ class Tasks extends Model
                 $query->where('category_id', $categoryId);
             }
         )->where('completed', $completed)
+            ->orderBy('id', 'desc')
             ->offset($offset)
             ->limit($limit);
     }
