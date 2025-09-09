@@ -27,7 +27,8 @@ class Response
         'VALIDATION_ERROR' => [['success' => false, "code" => 42201, 'message' => 'The given data was invalid.'], 422],
 
         // Success responses
-        'SUCCESS' => [['success' => true, "code" => 20000, 'message' => 'Success'], 200]
+        'SUCCESS' => [['success' => true, "code" => 20000, 'message' => 'Success'], 200],
+        'SUCCESS_CREATED' => [['success' => true, "code" => 20100, 'message' => 'Success'], 201],
     ];
 
     private const DEFAULT_RESPONSE = self::MAP['UNIVERSAL_ERROR'];

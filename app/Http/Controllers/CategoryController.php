@@ -57,7 +57,7 @@ class CategoryController extends Controller
             'name' => $request->name,
         ]);
 
-        return Response::json(message: 'Category created successfully');
+        return Response::json(key: 'SUCCESS_CREATED', message: 'Category created successfully');
     }
 
     /**

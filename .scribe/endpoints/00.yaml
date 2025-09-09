@@ -40,8 +40,8 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - PUT
-    uri: api/categories
+      - POST
+    uri: api/categories/add
     metadata:
       groupName: 'Category Management'
       groupDescription: ''

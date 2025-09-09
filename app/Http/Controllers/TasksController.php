@@ -112,7 +112,7 @@ class TasksController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        return Response::json(message: 'Task created successfully');
+        return Response::json(key: 'SUCCESS_CREATED', message: 'Task created successfully');
     }
 
     /**

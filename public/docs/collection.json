@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Todo List API Documentation",
-        "_postman_id": "8e0c7bfc-9a67-4d90-8875-174c2c06fe6c",
+        "_postman_id": "b6d96459-b0e3-4fd1-9271-41cf3806d551",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -59,11 +59,11 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/categories",
+                            "path": "api\/categories\/add",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/categories"
+                            "raw": "{{baseUrl}}\/api\/categories\/add"
                         },
-                        "method": "PUT",
+                        "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -202,11 +202,11 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/tasks",
+                            "path": "api\/tasks\/add",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/tasks"
+                            "raw": "{{baseUrl}}\/api\/tasks\/add"
                         },
-                        "method": "PUT",
+                        "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",

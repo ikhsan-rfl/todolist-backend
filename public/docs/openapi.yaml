@@ -90,7 +90,8 @@ paths:
       tags:
         - 'Category Management'
       security: []
-    put:
+  /api/categories/add:
+    post:
       summary: 'Add New Category'
       operationId: addNewCategory
       description: 'Add a new category to the database.'
@@ -386,7 +387,8 @@ paths:
                   example: 10
                   nullable: false
       security: []
-    put:
+  /api/tasks/add:
+    post:
       summary: 'Add New Task'
       operationId: addNewTask
       description: 'Add a new task to the database.'

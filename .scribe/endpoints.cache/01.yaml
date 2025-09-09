@@ -128,8 +128,8 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - PUT
-    uri: api/tasks
+      - POST
+    uri: api/tasks/add
     metadata:
       groupName: 'Tasks Management'
       groupDescription: ''
