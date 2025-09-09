@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('details', 2048)->nullable();
             $table->enum('priority', ["High", "Medium", "Low"]);
             $table->date('due_date')->nullable();
-            $table->integer('category_id');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('set null')->nullable();
             $table->boolean('completed')->default(false);
             $table->timestamps();
         });

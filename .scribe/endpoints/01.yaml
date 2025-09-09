@@ -117,7 +117,7 @@ endpoints:
         name: due_date
         description: 'Must be a valid date.'
         required: false
-        example: '2025-09-09T06:58:51'
+        example: '2025-09-09T07:39:12'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -168,7 +168,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       category_id: 16
-      due_date: '2025-09-09T06:58:51'
+      due_date: '2025-09-09T07:39:12'
       due_date_days: 39
       priority: Medium
       offset: 84
@@ -266,7 +266,7 @@ endpoints:
         type: integer
         enumValues: []
         exampleWasSpecified: true
-        nullable: false
+        nullable: true
         custom: []
     cleanBodyParameters:
       content: 'Beli Koin Micin'

@@ -96,7 +96,7 @@ class TasksController extends Controller
             'details' => 'nullable|string|max:2048',
             'priority' => 'required|in:High,Medium,Low',
             'due_date' => 'nullable|date',
-            'category_id' => 'required|integer|exists:categories,id',
+            'category_id' => 'nullable|integer',
         ]);
 
         if ($validation->fails()) {
@@ -108,7 +108,7 @@ class TasksController extends Controller
             'details' => $request->details,
             'priority' => $request->priority,
             'due_date' => $request->due_date,
-            'category_id' => $request->category_id,
+            'category_id' => $request->category_id ?? null,
         ]);
 
         return Response::json(key: 'SUCCESS_CREATED', message: 'Task created successfully');

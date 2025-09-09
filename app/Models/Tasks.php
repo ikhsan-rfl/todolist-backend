@@ -9,7 +9,12 @@ class Tasks extends Model
 {
     protected $guarded = [];
 
-    public static function baseQuery($dueDate = null, int $dueDateDays = 0, string $priority = null, int $categoryId = 0, int $offset = 0, int $limit = 3, bool $completed = false)
+    protected $casts = [
+        'due_date' => 'date',
+        'completed' => 'boolean',
+    ];
+
+    public static function baseQuery($dueDate = null, int $dueDateDays = 0, ?string $priority = null, int $categoryId = 0, int $offset = 0, int $limit = 3, bool $completed = false)
     {
         return self::when(
             $priority, // Filter by priority

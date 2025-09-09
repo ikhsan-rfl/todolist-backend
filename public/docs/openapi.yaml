@@ -436,7 +436,7 @@ paths:
                 due_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2025-09-09T06:58:51'
+                  example: '2025-09-09T07:39:12'
                   nullable: false
                 due_date_days:
                   type: integer
@@ -567,7 +567,7 @@ paths:
                   type: integer
                   description: 'The ID of the category the task belongs to.'
                   example: 1
-                  nullable: false
+                  nullable: true
               required:
                 - content
                 - priority
