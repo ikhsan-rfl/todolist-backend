@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Todo List API Documentation",
-        "_postman_id": "b6d96459-b0e3-4fd1-9271-41cf3806d551",
+        "_postman_id": "8609a3c7-3907-4eef-955b-a3ff5235cee3",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -258,7 +258,7 @@
                                 }
                             ]
                         },
-                        "method": "POST",
+                        "method": "PUT",
                         "header": [
                             {
                                 "key": "Content-Type",

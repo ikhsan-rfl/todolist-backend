@@ -498,7 +498,7 @@ paths:
                 - category_id
       security: []
   '/api/tasks/{id}':
-    post:
+    put:
       summary: 'Update Task Data'
       operationId: updateTaskData
       description: 'Update a task by its ID.'

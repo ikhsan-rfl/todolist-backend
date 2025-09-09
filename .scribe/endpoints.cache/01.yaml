@@ -229,7 +229,7 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - POST
+      - PUT
     uri: 'api/tasks/{id}'
     metadata:
       groupName: 'Tasks Management'
